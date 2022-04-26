@@ -3,7 +3,9 @@ import {
   newExpense,
   editExpense,
   deleteExpense,
-  setExpenses,
+  setExpenseError,
+  editExpenseError,
+  deleteExpenseError,
 } from "../app/expensesSlice";
 const ToastMiddleware = () => next => action => {
   switch (action.type) {
@@ -16,8 +18,14 @@ const ToastMiddleware = () => next => action => {
     case deleteExpense.type:
       toast.success(" Expense has been deleted successfully");
       break;
-    case setExpenses.type:
-      toast.success(" Expense has been Loaded successfully");
+    case setExpenseError.type:
+      toast.error("Error loading Expenses");
+      break;
+    case editExpenseError.type:
+      toast.error("Error loading Expense");
+      break;
+    case deleteExpenseError.type:
+      toast.error("Error loading Expense");
       break;
     default:
       break;
