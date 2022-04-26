@@ -4,7 +4,7 @@ import {
   editExpense,
   newExpense,
   setExpenses,
-} from "./expensesSlice";
+} from "../app/expensesSlice";
 //import { ActionCreators } from "../app/expensesReducer";
 
 const axiosInstance = axios.create({

@@ -2,7 +2,7 @@ import { useEffect, React, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { GetExpenses } from "../services/expenses";
-import expensesSlice from "../services/expensesSlice";
+import expensesSlice from "../app/expensesSlice";
 import { ExpenseForm } from "./expenseForm";
 
 export const ExpenseList = () => {
