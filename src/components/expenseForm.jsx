@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { DeleteExpense, EditExpense, NewExpense } from "../services/expenes";
+import { DeleteExpense, EditExpense, NewExpense } from "../services/expenses";
 
 export const ExpenseForm = ({ expense, setIsEditing }) => {
   const descriptions = [
@@ -31,12 +31,15 @@ export const ExpenseForm = ({ expense, setIsEditing }) => {
         e.preventDefault();
         if (isNewExpense) {
           // Create new expense
-          NewExpense(dispatch, { description: description, amount: amount });
+          NewExpense(dispatch, {
+            description: description,
+            amount: Number(amount),
+          });
         } else {
           EditExpense(dispatch, {
             id: expense.id,
             description: description,
-            amount: amount,
+            amount: Number(amount),
           });
           setIsEditing(false);
         }
@@ -50,7 +53,7 @@ export const ExpenseForm = ({ expense, setIsEditing }) => {
             onChange={e => setDescription(e.target.value)}
           >
             {descriptions.map(d => (
-              <option>{d}</option>
+              <option key={d.index}>{d}</option>
             ))}
           </Form.Control>
         </Col>

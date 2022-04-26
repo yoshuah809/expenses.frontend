@@ -32,7 +32,9 @@ export default (state = initialState, action) => {
           })
           return { ...state, expenses: [...expenses]}
       case ActionTypes.DELETE_EXPENSE:
-          var expenses = state.expenses.filter(expense => expense.id !== action.payload.id)
+          expenses = state.expenses.filter(
+            expense => expense.id !== action.payload.id
+          );
           return { ...state, expenses: [...expenses]}
     default:
       return { ...state };
