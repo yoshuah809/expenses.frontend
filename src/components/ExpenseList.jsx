@@ -1,7 +1,8 @@
-import { useEffect, React } from "react";
+import { useEffect, React, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { GetExpenses } from "../services/expenes";
+import { ExpenseForm } from "./expenseForm";
 
 export const ExpenseList = () => {
   const dispatch = useDispatch();
@@ -12,19 +13,24 @@ export const ExpenseList = () => {
   }, []);
 
   return expenses.map(e => (
-    <div className="container" styles={{ marginBottom: "1rem" }}>
+    <div key={e.id} styles={{ marginBottom: "1rem" }}>
       <ListRow expense={e} />
     </div>
   ));
 };
 
 const ListRow = ({ expense }) => {
-  return (
+  const [isEditing, setIsEditing] = useState(false);
+  return isEditing ? (
+    <ExpenseForm expense={expense} setIsEditing={setIsEditing} />
+  ) : (
     <div>
       <Row>
         <Col>{expense.description}</Col>
-        <Col>{expense.amount}</Col>
-        <Button variant="warning">Edit</Button>
+        <Col>${expense.amount}</Col>
+        <Button variant="warning" onClick={() => setIsEditing(!isEditing)}>
+          Edit
+        </Button>
       </Row>
       <hr />
     </div>

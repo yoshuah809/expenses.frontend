@@ -14,3 +14,37 @@ export const GetExpenses = async dispatch => {
     console.log(error);
   }
 };
+
+export const NewExpense = async (dispatch, expense) => {
+  try {
+    //Make Api Call
+    dispatch(
+      ActionCreators.newExpense({
+        id: 10,
+        description: expense.description,
+        amount: expense.amount,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const EditExpense = async (dispatch, expense) => {
+  try {
+    //Make Api Call
+    dispatch(ActionCreators.editExpense(expense));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const DeleteExpense = async (dispatch, expense) => {
+  try {
+    //Make Api Call
+    dispatch(ActionCreators.deleteExpense(expense));
+  } catch (error) {
+    console.log(error);
+  }
+};
+  
